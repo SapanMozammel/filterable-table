@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Multiselect Dropdown Demo</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="tableSection">
+        <div class="tableHeader">
+          <select multiple class='tableSelect'>
+            <option value="Singapore">Singapore</option>
+            <option value="Portland">Portland</option>
+            <option value="Halifax">Halifax</option>
+            <option value="London">London</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Toronto">Toronto</option>
+          </select>
+        </div>
+        <div class="tableWrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody id="table-body-for-append">
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="multi-select-dropdown.js"></script>
+
+</html>
