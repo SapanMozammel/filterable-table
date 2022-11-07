@@ -371,106 +371,27 @@ const MultiSelectDropdown = (params) => {
   config.useStyles && createStyles();
 };
 
-const tableOptions = [
-  {
-    key: ["Singapore", "Portland"],
-    data: {
-      ID: "1",
-      Name: "Lars",
-      Address: "P.O. Box 311, 6832 In Ave	",
-      City: "Kalken",
-      Country: "Mongolia",
-    },
-  },
-  {
-    key: "Portland",
-    data: {
-      ID: "2",
-      Name: "Lars",
-      Address: "P.O. Box 311, 6832 In Ave	",
-      City: "Kalken",
-      Country: "Mongolia",
-    },
-  },
-  {
-    key: "Halifax",
-    data: {
-      ID: "3",
-      Name: "Lars",
-      Address: "P.O. Box 311, 6832 In Ave	",
-      City: "Kalken",
-      Country: "Mongolia",
-    },
-  },
-  {
-    key: "London",
-    data: {
-      ID: "4",
-      Name: "Lars",
-      Address: "P.O. Box 311, 6832 In Ave	",
-      City: "Kalken",
-      Country: "Mongolia",
-    },
-  },
-  {
-    key: "Seattle",
-    data: {
-      ID: "5",
-      Name: "Lars",
-      Address: "P.O. Box 311, 6832 In Ave	",
-      City: "Kalken",
-      Country: "Mongolia",
-    },
-  },
-  {
-    key: "Toronto",
-    data: {
-      ID: "6",
-      Name: "Lars",
-      Address: "P.O. Box 311, 6832 In Ave	",
-      City: "Kalken",
-      Country: "Mongolia",
-    },
-  },
-];
-
 function onFilter(selectedArray) {
-  let tableRows;
-
-  if (selectedArray?.length) {
-    appendTableRow(
-      tableOptions.filter((optionElement) =>
-        selectedArray.find(
-          (selected) =>
-            selected == optionElement.key ||
-            optionElement.key.includes(selected)
-        )
-      )
-    );
-  } else {
-    appendTableRow(tableOptions);
-  }
-}
-
-function appendTableRow(rows) {
   let tableBody = document.getElementById("table-body-for-append");
-  tableBody.querySelectorAll("tr").forEach((tr, index) => {
-    tableBody.removeChild(tr);
-  });
-
-  rows.map((option) => {
-    let tableRow = newElement("tr");
-    Object.values(option?.data)?.map((entry) => {
-      tableRow.appendChild(
-        newElement("td", {
-          text: entry,
-        })
-      );
+  if (selectedArray?.length) {
+    tableBody?.childNodes?.forEach((element) => {
+      if (element.nodeName == "TR") {
+        let keys = element?.attributes?.keys.nodeValue.toString().split(" ");
+        let found = selectedArray.find((selected) => keys.includes(selected));
+        if (found) {
+          element.classList.add("selected");
+        } else {
+          element.classList.remove("selected");
+        }
+      }
     });
-
-    console.log(tableRow);
-    tableBody.appendChild(tableRow);
-  });
+  } else {
+    tableBody?.childNodes?.forEach((element) => {
+      if (element.nodeName == "TR") {
+        element.classList.add("selected");
+      }
+    });
+  }
 }
 
 window.addEventListener("load", () => {
